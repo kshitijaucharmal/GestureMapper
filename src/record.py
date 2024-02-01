@@ -59,7 +59,7 @@ while True:
                     flattened_landmarks.append(point.y)
                     flattened_landmarks.append(point.z)
                 with open(f'dataset/{class_label}.csv', 'a') as f:
-                    f.write(','.join(str(lm) for lm in flattened_landmarks) + '\n')
+                    f.write(f'{class_label},'.join(str(lm) for lm in flattened_landmarks) + '\n')
 
                 print("Recording frame:", frame_count)
                 frame_count += 1
