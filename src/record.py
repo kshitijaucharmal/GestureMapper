@@ -10,13 +10,11 @@ from mediapipe.tasks.python import vision
 from pprint import pprint
 
 from model import Model
-import torch
-# Base options and detector setup
-base_options = python.BaseOptions(model_asset_path='tasks/hand_landmarker.task')
-options = vision.HandLandmarkerOptions(base_options=base_options,
-                                       num_hands=2)
+import torch 
+# Base options and detector setup 
+base_options = python.BaseOptions(model_asset_path='tasks/hand_landmarker.task') 
+options = vision.HandLandmarkerOptions(base_options=base_options, num_hands=2) 
 detector = vision.HandLandmarker.create_from_options(options)
-
 
 # Initialize the camera
 cap = cv2.VideoCapture(1)
@@ -59,7 +57,7 @@ while True:
                     flattened_landmarks.append(point.y)
                     flattened_landmarks.append(point.z)
                 with open(f'dataset/{class_label}.csv', 'a') as f:
-                    f.write(f'{class_label},'.join(str(lm) for lm in flattened_landmarks) + '\n')
+                    f.write(f'{class_label},' + ','.join(str(lm) for lm in flattened_landmarks) + '\n')
 
                 print("Recording frame:", frame_count)
                 frame_count += 1
