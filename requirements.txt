@@ -1,0 +1,5 @@
+torch
+pandas
+mediapipe
+tqdm
+opencv-python
