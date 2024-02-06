@@ -5,9 +5,12 @@ import torch.nn.functional as F
 class Model(nn.Module):
     def __init__(self, inodes, onodes):
         super().__init__()
-        self.layer1 = nn.Linear(inodes, 10)
-        self.layer2 = nn.Linear(10, 8)
-        self.layer3 = nn.Linear(8, onodes)
+        n_layer1 = 30
+        n_layer2 = 20
+
+        self.layer1 = nn.Linear(inodes, n_layer1)
+        self.layer2 = nn.Linear(n_layer1, n_layer2)
+        self.layer3 = nn.Linear(n_layer2, onodes)
         self.loss_function = nn.CrossEntropyLoss()
         self.optimizer = torch.optim.SGD(self.parameters(), lr=0.01)
         pass
@@ -25,7 +28,7 @@ class Model(nn.Module):
         y_pred = self.forward(x)
 
         loss = self.loss_function(y_pred, y)
-        print('Loss:', loss)
+        print('Loss:', loss.item())
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()

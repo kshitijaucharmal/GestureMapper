@@ -4,6 +4,7 @@ from mediapipe.tasks.python import vision
 from pprint import pprint
 
 from model import Model
+from clean_data import DataCleaner
 import torch
 import os
 import pandas as pd
@@ -14,14 +15,12 @@ options = vision.HandLandmarkerOptions(base_options=base_options,
                                        num_hands=2)
 detector = vision.HandLandmarker.create_from_options(options)
 
-# hard coded gesture list
-gestures_list = {
-        'peace':0,
-        'thumbsdown':1,
-        'thumbsup':2,
-    }
+data_cleaner = DataCleaner()
 
-dataset = pd.read_csv("dataset/dataset.csv", header=None).sample(frac=1)
+# hard coded gesture list
+gestures_list = data_cleaner.gestures
+
+dataset = data_cleaner.combine_dataset(shuffle=True)
 
 labels = dataset.reindex(columns = [0]).to_numpy().flatten()
 inputs = dataset.drop(0, axis=1).to_numpy()
@@ -31,7 +30,7 @@ epocs = 30
 
 for _ in range(epocs):
     for i, ins in enumerate(inputs):
-        label = torch.tensor([0., 0., 0.])
-        label_index = gestures_list[labels[i]]
+        label = torch.zeros([len(gestures_list),])
+        label_index = gestures_list.index(labels[i])
         label[label_index] = 1.
         nn.backprop(torch.Tensor(ins), torch.Tensor(label))
