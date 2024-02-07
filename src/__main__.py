@@ -26,9 +26,9 @@ labels = dataset.reindex(columns = [0]).to_numpy().flatten()
 inputs = dataset.drop(0, axis=1).to_numpy()
 
 nn = Model(len(inputs[0]), len(gestures_list))
-epocs = 30
+epochs = 30
 
-for _ in range(epocs):
+for _ in range(epochs):
     for i, ins in enumerate(inputs):
         label = torch.zeros([len(gestures_list),])
         label_index = gestures_list.index(labels[i])
