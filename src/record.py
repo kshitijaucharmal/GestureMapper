@@ -39,9 +39,9 @@ while True:
         if not ret:
             break
 
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-        cv2.imshow("Frame", gray)
+        cv2.imshow("Frame", frame)
 
         # Check if the "r" key is pressed
         key = cv2.waitKey(1)
