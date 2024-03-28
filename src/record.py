@@ -25,7 +25,7 @@ options = vision.HandLandmarkerOptions(base_options=base_options, num_hands=2)
 detector = vision.HandLandmarker.create_from_options(options)
 
 # Initialize the camera
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 
 def draw_landmarks_on_image(rgb_image, detection_result):
