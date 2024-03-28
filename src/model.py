@@ -5,14 +5,14 @@ import torch.nn.functional as F
 class Model(nn.Module):
     def __init__(self, inodes, onodes):
         super().__init__()
-        n_layer1 = 30
-        n_layer2 = 20
+        n_layer1 = 24
+        n_layer2 = 16
 
         self.layer1 = nn.Linear(inodes, n_layer1)
         self.layer2 = nn.Linear(n_layer1, n_layer2)
         self.layer3 = nn.Linear(n_layer2, onodes)
         self.loss_function = nn.CrossEntropyLoss()
-        self.optimizer = torch.optim.SGD(self.parameters(), lr=0.01)
+        self.optimizer = torch.optim.SGD(self.parameters(), lr=0.05)
         pass
 
     def forward(self, x):
