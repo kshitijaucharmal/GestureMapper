@@ -1,11 +1,11 @@
 from tkinter import *
 import customtkinter
 import tkinter
+import pandas as pd
 
 # from PIL import Image, ImageTk
-from main import main_app
-import pandas as pd
-from forgot_my_password import forgot_my_password
+from newapp.main import main_app
+from newapp.forgot_my_password import forgot_my_password
 
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("green")
@@ -94,4 +94,4 @@ def login_page_start():
     app.mainloop()
 
 
-login_page_start()
+# login_page_start()

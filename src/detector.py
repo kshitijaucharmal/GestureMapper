@@ -21,7 +21,7 @@ HANDEDNESS_TEXT_COLOR = (88, 205, 54)  # vibrant green
 
 class Detector:
 
-    def __init__(self, recording=False):
+    def __init__(self, recording=False, train=False):
         self.data_cleaner = DataCleaner()
 
         # Base options and detector setup
@@ -41,9 +41,11 @@ class Detector:
         print("Initialization Done. Training network..")
 
         self.gestures_list = self.data_cleaner.gestures
-        trainer = Trainer(self.data_cleaner)
-        trainer.train(False)
-        self.nn = trainer.nn
+
+        if train:
+            trainer = Trainer(self.data_cleaner)
+            trainer.train(False)
+            self.nn = trainer.nn
         pass
 
     def draw_landmarks_on_image(self, rgb_image, detection_result):

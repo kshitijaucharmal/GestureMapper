@@ -1,5 +1,5 @@
 action,path,gesture
-,,peace
+,~/test.sh,peace
 command+v,,Thumbs_Up_Left
 ctrl+right,,Thumbs_Up_Right
 ctrl+left,,Palm_Left

@@ -21,7 +21,7 @@ class Trainer:
         self.epochs = 10
         pass
 
-    def train(self, save=False):
+    def train(self, save=True):
         for _ in range(self.epochs):
             for i, ins in enumerate(self.inputs):
                 label = torch.zeros(
@@ -34,7 +34,7 @@ class Trainer:
                 self.nn.backprop(torch.Tensor(ins), torch.Tensor(label))
 
         if save:
-            torch.save(self.nn.state_dict(), f"models/test_model.pt")
+            torch.save(self.nn.state_dict(), f"models/main_model.pt")
 
 
 # Testing
