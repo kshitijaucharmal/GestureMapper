@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 
+
 class DataCleaner:
     def __init__(self):
         self.gestures = self.get_gesture_list()
@@ -10,7 +11,7 @@ class DataCleaner:
     def get_gesture_list(self):
         gestures = []
         for file in os.listdir("dataset"):
-            if '.csv' not in file:
+            if ".csv" not in file:
                 continue
 
             gestures.append(file[:-4])
@@ -19,7 +20,7 @@ class DataCleaner:
     def combine_dataset(self, shuffle=True):
         dfs = []
         for file in self.gestures:
-            df = pd.read_csv(f'dataset/{file}.csv', header=None)
+            df = pd.read_csv(f"dataset/{file}.csv", header=None)
             dfs.append(df)
 
         full_data = pd.concat(dfs)

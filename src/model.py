@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+
 class Model(nn.Module):
     def __init__(self, inodes, onodes):
         super().__init__()
@@ -28,7 +29,7 @@ class Model(nn.Module):
         y_pred = self.forward(x)
 
         loss = self.loss_function(y_pred, y)
-        print('Loss:', loss.item())
+        print("Loss:", loss.item())
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()

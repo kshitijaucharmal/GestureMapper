@@ -1,0 +1,10 @@
+action,path,gesture
+,,peace
+command+v,,Thumbs_Up_Left
+ctrl+right,,Thumbs_Up_Right
+ctrl+left,,Palm_Left
+ctrl+ up,,Palm_Right
+command+space  ,,Thumbs_Down_Left
+,,Thumbs_Down_Right
+,,Fist_Left
+,,Fist_Right
