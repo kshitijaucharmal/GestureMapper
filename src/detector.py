@@ -12,6 +12,7 @@ from model import Model
 from clean_data import DataCleaner
 from train import Trainer
 import torch
+import time
 
 MARGIN = 10
 FONT_SIZE = 1
@@ -34,21 +35,23 @@ class Detector:
         self.detector = vision.HandLandmarker.create_from_options(self.options)
         self.recording = recording  # Initialize the camera
         self.cap = cv2.VideoCapture(0)
-
-        self.nn = Model(63, 5)
-        self.nn.load_state_dict(torch.load("models/main_model.pt"))
-
-        print("Initialization Done. Training network..")
-
         self.gestures_list = self.data_cleaner.gestures
 
         if train:
             trainer = Trainer(self.data_cleaner)
-            trainer.train(False)
+            trainer.train()
             self.nn = trainer.nn
-        pass
+        else:
+            self.nn = Model(63, len(self.gestures_list))
+            self.nn.load_state_dict(torch.load("models/main_model.pt"))
 
-        self.detected_gesture = None
+        print("Initialization Done. Training network..")
+
+        self.detected_gesture = -1
+        self.time_thres = 2
+        self.time_ctr = 0
+        self.start_time = time.time()
+        pass
 
     def draw_landmarks_on_image(self, rgb_image, detection_result):
         hand_landmarks_list = detection_result.hand_landmarks
@@ -145,9 +148,30 @@ class Detector:
 
             out = self.nn.forward(torch.Tensor(flattened_landmarks))
             out = torch.argmax(out).item()
-            # print(self.gestures_list[out])
+            print(self.gestures_list[out])
 
-            self.show(frame, True)
+            if self.time_ctr > self.time_thres:
+                self.time_ctr = 0
+                self.start_time = time.time()
+                print(
+                    self.time_thres,
+                    "seconds done,",
+                    self.gestures_list[out],
+                    "gesture detected",
+                )
+                pass
+            else:
+                self.time_ctr = time.time() - self.start_time
+                if self.detected_gesture != out:
+                    # Gesture changed
+                    self.start_time = time.time()
+                    self.time_ctr = 0
+
+            # Set detected_gesture
+            self.detected_gesture = out
+
+            # Show
+            # self.show(frame, True)
             pass
 
     def show(self, frame, annotated=False):

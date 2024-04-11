@@ -17,7 +17,7 @@ def start_page():
 
     def detector():
         # Implement your detector function here
-        detector = Detector()
+        detector = Detector(train=True)
         detector.main_loop()
         pass
 
