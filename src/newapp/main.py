@@ -183,6 +183,7 @@ def main_app():
     def show_action_frame_load_action(number):
 
         df = pd.read_csv("data.csv")
+        print(df)
         # action_frame.place(relx = 0.5 ,rely = 0.6 , anchor = tkinter.CENTER)
 
         label = customtkinter.CTkLabel(

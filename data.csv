@@ -1,6 +1,6 @@
 action,path,gesture
 ,~/test.sh,peace
-command+v,,Thumbs_Up_Left
+super+v,,Thumbs_Up_Left
 ctrl+right,,Thumbs_Up_Right
 ctrl+left,,Palm_Left
 ctrl+ up,,Palm_Right

@@ -45,7 +45,8 @@ class Detector:
             self.nn = Model(63, len(self.gestures_list))
             self.nn.load_state_dict(torch.load("models/main_model.pt"))
 
-        print("Initialization Done. Training network..")
+        print("Initialization Done")
+        print("Start Showing gestures to the camera..")
 
         self.detected_gesture = -1
         self.time_thres = 2
@@ -159,6 +160,7 @@ class Detector:
                     self.gestures_list[out],
                     "gesture detected",
                 )
+
                 pass
             else:
                 self.time_ctr = time.time() - self.start_time
