@@ -21,7 +21,7 @@ HANDEDNESS_TEXT_COLOR = (88, 205, 54)  # vibrant green
 
 class Detector:
 
-    def __init__(self, recording=False, train=False):
+    def __init__(self, recording=False, train=True):
         self.data_cleaner = DataCleaner()
 
         # Base options and detector setup
