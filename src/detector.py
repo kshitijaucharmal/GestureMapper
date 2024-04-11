@@ -48,6 +48,8 @@ class Detector:
             self.nn = trainer.nn
         pass
 
+        self.detected_gesture = None
+
     def draw_landmarks_on_image(self, rgb_image, detection_result):
         hand_landmarks_list = detection_result.hand_landmarks
         handedness_list = detection_result.handedness
@@ -100,8 +102,8 @@ class Detector:
     def main_loop(self):
         # Loop over the frames
         while True:
-            if self.recording:
-                class_name = self.set_class_name()
+            # if self.recording:
+            #     class_name = self.set_class_name()
 
             ret, frame = self.cap.read()
 
@@ -143,9 +145,10 @@ class Detector:
 
             out = self.nn.forward(torch.Tensor(flattened_landmarks))
             out = torch.argmax(out).item()
-            print(self.gestures_list[out])
+            # print(self.gestures_list[out])
 
-            self.show(frame)
+            self.show(frame, True)
+            pass
 
     def show(self, frame, annotated=False):
         image = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame)

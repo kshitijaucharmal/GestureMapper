@@ -3,7 +3,6 @@
 from detector import Detector
 from newapp.login import login_page_start
 
-from tkinter import *
 import customtkinter
 import tkinter
 
@@ -30,7 +29,7 @@ def start_page():
     frame.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
     l2 = customtkinter.CTkLabel(frame, text="Start Page", font=("Century Gothic", 25))
-    l2.place(x=125, y=60)
+    l2.place(x=100, y=60)
 
     start_button = customtkinter.CTkButton(
         frame, text="Start", hover_color="darkgreen", command=detector
@@ -46,4 +45,3 @@ def start_page():
 
 
 start_page()
-# Needs to have another screen to choose between start and dashboard
