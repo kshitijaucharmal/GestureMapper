@@ -162,5 +162,4 @@ bin/
 lib64
 pyvenv.cfg
 
-dataset
 *.jpg
