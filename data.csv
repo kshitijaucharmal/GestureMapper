@@ -1,10 +1,10 @@
 action,path,gesture
-,~/test.sh,peace
-super+v,,Thumbs_Up_Left
-ctrl+right,,Thumbs_Up_Right
-ctrl+left,,Palm_Left
-ctrl+ up,,Palm_Right
-command+space  ,,Thumbs_Down_Left
-,,Thumbs_Down_Right
-,,Fist_Left
-,,Fist_Right
+ctrl+shift+r,,palm_left
+super+v,,palm_right
+ctrl+right,,peace
+ctrl+left,,thumbs_up_right
+ctrl+ up,,thumbs_up_left
+command+space,,thumbs_down_left
+,,thumbs_down_right
+,,fist_left
+,,fist_right

@@ -1,6 +1,7 @@
 import cv2
 import os
 import numpy as np
+import pandas as pd
 
 import mediapipe as mp
 from mediapipe.tasks import python
@@ -154,12 +155,15 @@ class Detector:
             if self.time_ctr > self.time_thres:
                 self.time_ctr = 0
                 self.start_time = time.time()
-                print(
-                    self.time_thres,
-                    "seconds done,",
-                    self.gestures_list[out],
-                    "gesture detected",
-                )
+
+                self.perform_action(out)
+
+                # print(
+                #     self.time_thres,
+                #     "seconds done,",
+                #     self.gestures_list[out],
+                #     "gesture detected",
+                # )
 
                 pass
             else:
@@ -173,8 +177,14 @@ class Detector:
             self.detected_gesture = out
 
             # Show
-            # self.show(frame, True)
+            self.show(frame, True)
             pass
+
+    def perform_action(self, gesture_id):
+        df = pd.read_csv("data.csv")
+        print(df)
+        print("Action to be taken ", df.loc[gesture_id])
+        pass
 
     def show(self, frame, annotated=False):
         image = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame)

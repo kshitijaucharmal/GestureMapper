@@ -149,15 +149,15 @@ def main_app():
     # showing option menu
     def show_option_menu(number):
         if number == 1:
-            label.configure(text="Gesture: Peace")
+            label.configure(text="Gesture: Palm Left")
         elif number == 2:
-            label.configure(text="Gesture: Thumbs Up Left")
+            label.configure(text="Gesture: Palm Right")
         elif number == 3:
-            label.configure(text="Gesture: Thumbs Up Right")
+            label.configure(text="Gesture: Peace")
         elif number == 4:
-            label.configure(text="Gesture: Plam Left")
+            label.configure(text="Gesture: Thumbs Up Right")
         elif number == 5:
-            label.configure(text="Gesture: Plam Right")
+            label.configure(text="Gesture: Thumbs Up Left")
         elif number == 6:
             label.configure(text="Gesture: Thumbs Down Left")
         elif number == 7:
