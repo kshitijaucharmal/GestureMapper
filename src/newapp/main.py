@@ -149,9 +149,9 @@ def main_app():
     # showing option menu
     def show_option_menu(number):
         if number == 1:
-            label.configure(text="Gesture: Palm Left")
-        elif number == 2:
             label.configure(text="Gesture: Palm Right")
+        elif number == 2:
+            label.configure(text="Gesture: Palm Left")
         elif number == 3:
             label.configure(text="Gesture: Peace")
         elif number == 4:

@@ -1,6 +1,6 @@
 action,path,gesture
-ctrl+shift+r,,palm_left
-super+v,,palm_right
+,chwal,palm_right
+super+v,,palm_left
 ctrl+right,,peace
 ctrl+left,,thumbs_up_right
 ctrl+ up,,thumbs_up_left

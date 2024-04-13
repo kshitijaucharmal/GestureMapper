@@ -8,6 +8,8 @@ from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from mediapipe import solutions
 from mediapipe.framework.formats import landmark_pb2
+from pandas._libs.parsers import na_values
+from newapp.shortcuts import *
 
 from model import Model
 from clean_data import DataCleaner
@@ -150,7 +152,6 @@ class Detector:
 
             out = self.nn.forward(torch.Tensor(flattened_landmarks))
             out = torch.argmax(out).item()
-            print(self.gestures_list[out])
 
             if self.time_ctr > self.time_thres:
                 self.time_ctr = 0
@@ -181,9 +182,32 @@ class Detector:
             pass
 
     def perform_action(self, gesture_id):
-        df = pd.read_csv("data.csv")
-        print(df)
-        print("Action to be taken ", df.loc[gesture_id])
+
+        table = []
+        with open("data.csv", "r") as f:
+            table = f.read().split("\n")
+
+        table = table[1:]
+        option = table[gesture_id].split(",")
+        action = option[0]
+        path = option[1]
+
+        print("Action to be taken ", action)
+        print("Path to be taken ", path)
+
+        if action != "":
+            print("Run action")
+            s = action
+            new = remove_symbol(s, bad_chars)
+            new_s = get_word(new)
+            if len(new_s) == 2:
+                run_shortcut(new_s[0], new_s[1], "")
+            elif len(new_s) == 3:
+                run_shortcut(new_s[0], new_s[1], new_s[2])
+
+        if path != "":
+            print("Run Path")
+            os.system(path)
         pass
 
     def show(self, frame, annotated=False):
